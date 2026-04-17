@@ -15,6 +15,7 @@ import lombok.Setter;
 public class IncomingLeadResponse {
 
     private Long id;
+    private Long tenantId;
     private String leadNo;
     private Long whatsappMessageId;
     private String leadType;
@@ -39,6 +40,14 @@ public class IncomingLeadResponse {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
     }
 
     public String getLeadNo() {

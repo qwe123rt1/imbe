@@ -1,5 +1,6 @@
 package com.rohit.clinic.dto.request;
 
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,10 +12,29 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SaveWhatsAppIncomingMessageRequest {
 
+    private Long tenantId;
+    private Long messageSourceId;
     private String whatsappMessageId;
     private String senderPhone;
     private String senderName;
     private String messageText;
+    private LocalDateTime receivedAt;
+
+    public Long getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public Long getMessageSourceId() {
+        return messageSourceId;
+    }
+
+    public void setMessageSourceId(Long messageSourceId) {
+        this.messageSourceId = messageSourceId;
+    }
 
     public String getWhatsappMessageId() {
         return whatsappMessageId;
@@ -46,5 +66,13 @@ public class SaveWhatsAppIncomingMessageRequest {
 
     public void setMessageText(String messageText) {
         this.messageText = messageText;
+    }
+
+    public LocalDateTime getReceivedAt() {
+        return receivedAt;
+    }
+
+    public void setReceivedAt(LocalDateTime receivedAt) {
+        this.receivedAt = receivedAt;
     }
 }

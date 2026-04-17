@@ -11,5 +11,7 @@ public interface WhatsAppIncomingMessageRepository extends JpaRepository<WhatsAp
 
     Optional<WhatsAppIncomingMessage> findByWhatsappMessageId(String whatsappMessageId);
 
+    Optional<WhatsAppIncomingMessage> findByTenant_IdAndWhatsappMessageId(Long tenantId, String whatsappMessageId);
+
     boolean existsByWhatsappMessageId(String whatsappMessageId);
 }

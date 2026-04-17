@@ -9,6 +9,7 @@ import com.rohit.clinic.entity.LeadSource;
 import com.rohit.clinic.entity.LeadStatus;
 import com.rohit.clinic.entity.Product;
 import com.rohit.clinic.entity.WhatsAppIncomingMessage;
+import com.rohit.clinic.exception.BadRequestException;
 import com.rohit.clinic.exception.NotFoundException;
 import com.rohit.clinic.repository.IncomingLeadRepository;
 import com.rohit.clinic.repository.LeadSourceRepository;
@@ -49,6 +50,10 @@ public class IncomingLeadServiceImpl implements IncomingLeadService {
     @Override
     @Transactional
     public IncomingLeadResponse createFromWhatsApp(CreateIncomingLeadFromWhatsAppRequest request) {
+        if (request == null || request.getWhatsappMessageId() == null) {
+            throw new BadRequestException("whatsappMessageId is required");
+        }
+
         WhatsAppIncomingMessage message = whatsAppIncomingMessageRepository.findById(request.getWhatsappMessageId())
                 .orElseThrow(() -> new NotFoundException("WhatsApp message not found"));
 
@@ -61,6 +66,7 @@ public class IncomingLeadServiceImpl implements IncomingLeadService {
 
         IncomingLead lead = new IncomingLead();
         lead.setLeadNo(generateLeadNo());
+        lead.setTenant(message.getTenant());
         lead.setSource(findOrCreateWhatsAppSource());
         lead.setWhatsappMessage(message);
         lead.setLeadType("WHATSAPP_TEXT");
@@ -133,6 +139,7 @@ public class IncomingLeadServiceImpl implements IncomingLeadService {
     private IncomingLeadResponse toResponse(IncomingLead lead) {
         IncomingLeadResponse response = new IncomingLeadResponse();
         response.setId(lead.getId());
+        response.setTenantId(lead.getTenant() != null ? lead.getTenant().getId() : null);
         response.setLeadNo(lead.getLeadNo());
         response.setWhatsappMessageId(lead.getWhatsappMessage() != null ? lead.getWhatsappMessage().getId() : null);
         response.setLeadType(lead.getLeadType());

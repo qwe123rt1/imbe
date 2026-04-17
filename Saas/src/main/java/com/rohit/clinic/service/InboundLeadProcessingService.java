@@ -6,4 +6,6 @@ import com.rohit.clinic.dto.response.ProcessWhatsAppMessageResponse;
 public interface InboundLeadProcessingService {
 
     ProcessWhatsAppMessageResponse processIncomingWhatsAppMessage(ProcessWhatsAppMessageRequest request);
+
+    void handleIncomingWhatsAppWebhook(String payload);
 }

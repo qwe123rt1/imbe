@@ -1,5 +1,6 @@
 package com.rohit.clinic.dto.request;
 
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,10 +9,12 @@ import lombok.Setter;
 public class ProcessWhatsAppMessageRequest {
 
     private Long tenantId;
+    private Long messageSourceId;
     private String senderName;
     private String senderPhone;
     private String messageText;
     private String messageKey;
+    private LocalDateTime receivedAt;
 
     public Long getTenantId() {
         return tenantId;
@@ -19,6 +22,14 @@ public class ProcessWhatsAppMessageRequest {
 
     public void setTenantId(Long tenantId) {
         this.tenantId = tenantId;
+    }
+
+    public Long getMessageSourceId() {
+        return messageSourceId;
+    }
+
+    public void setMessageSourceId(Long messageSourceId) {
+        this.messageSourceId = messageSourceId;
     }
 
     public String getSenderName() {
@@ -51,5 +62,13 @@ public class ProcessWhatsAppMessageRequest {
 
     public void setMessageKey(String messageKey) {
         this.messageKey = messageKey;
+    }
+
+    public LocalDateTime getReceivedAt() {
+        return receivedAt;
+    }
+
+    public void setReceivedAt(LocalDateTime receivedAt) {
+        this.receivedAt = receivedAt;
     }
 }

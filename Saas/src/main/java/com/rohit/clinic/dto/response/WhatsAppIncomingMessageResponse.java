@@ -16,6 +16,8 @@ import lombok.Setter;
 public class WhatsAppIncomingMessageResponse {
 
     private Long id;
+    private Long tenantId;
+    private Long messageSourceId;
     private String whatsappMessageId;
     private String senderPhone;
     private String senderName;
@@ -38,6 +40,22 @@ public class WhatsAppIncomingMessageResponse {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public Long getMessageSourceId() {
+        return messageSourceId;
+    }
+
+    public void setMessageSourceId(Long messageSourceId) {
+        this.messageSourceId = messageSourceId;
     }
 
     public String getWhatsappMessageId() {

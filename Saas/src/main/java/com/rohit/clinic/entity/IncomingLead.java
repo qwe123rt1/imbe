@@ -26,6 +26,10 @@ public class IncomingLead extends BaseEntity {
     private String leadNo;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tenant_id")
+    private Tenant tenant;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "source_id")
     private LeadSource source;
 
@@ -114,6 +118,14 @@ public class IncomingLead extends BaseEntity {
 
     public void setLeadNo(String leadNo) {
         this.leadNo = leadNo;
+    }
+
+    public Tenant getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(Tenant tenant) {
+        this.tenant = tenant;
     }
 
     public LeadSource getSource() {

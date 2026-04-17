@@ -4,6 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -19,6 +22,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class WhatsAppIncomingMessage extends BaseEntity {
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tenant_id")
+    private Tenant tenant;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "message_source_id")
+    private TenantMessageSource messageSource;
 
     @Column(name = "whatsapp_message_id")
     private String whatsappMessageId;
@@ -66,6 +77,22 @@ public class WhatsAppIncomingMessage extends BaseEntity {
 
     @Column(name = "remarks")
     private String remarks;
+
+    public Tenant getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(Tenant tenant) {
+        this.tenant = tenant;
+    }
+
+    public TenantMessageSource getMessageSource() {
+        return messageSource;
+    }
+
+    public void setMessageSource(TenantMessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     public String getWhatsappMessageId() {
         return whatsappMessageId;

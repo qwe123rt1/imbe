@@ -1,8 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="SaasApplication" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="com.rohit.clinic.SaasApplication" />
-    <module name="saas" />
-    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <module name="new" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
